@@ -3,6 +3,31 @@ title: "Text Mining with R"
 output: html_notebook
 ---
 
+Welcome to the "Text Mining with R" FTI session. During this session, we will work through this R Notebook to do some text mining of Jane Austen's works, and turn our results into some charts. Our activities are taken directly from Chapter 1 of "[Text Mining with R: A Tidy Approach](https://www.tidytextmining.com/)" by Silge and Robinson. We're just going to scratch the surface on R and text mining, so if you're interested in pursuing this topic further, take a look at Silge & Robinson's free online text.
+
+
+Within this R Notebook, we can automatically run code samples by clicking the green triangle button in samples like below (please note that messages beginning with "#" are comments):
+
+```{r}
+x<-3  #assigns "3" to variable "x"
+
+x    #prints the value of x
+
+```
+
+Clicking the green triangle is fun and easy, but doesn't really help you learn R. So after each code sample, there will be an empty code block where you can write the code, and then can execute it by clicking the green triangle. In the sample below, create a variable called "y", set it equal to 45, and then print it.
+
+```{r}
+#enter your code below:
+
+
+
+```
+
+
+
+
+
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
