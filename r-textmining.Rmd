@@ -25,6 +25,7 @@ Clicking the green triangle is fun and easy, but doesn't really help you learn R
 ```
 
 
+Before really getting going, keep in mind that you can create a web page output of this notebook by clicking the "Preview" button above. It makes this a little easier to read, and also makes this format great for things like tutorials, lab manuals, etc.
 
 
 
