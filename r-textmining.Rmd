@@ -1,8 +1,6 @@
 ---
 title: "Text Mining with R"
 output:
-  html_document:
-    df_print: paged
   html_notebook: default
   pdf_document: default
 ---
@@ -21,6 +19,8 @@ x    #prints the value of x
 ```
 
 Clicking the green triangle is fun and easy, but doesn't really help you learn R. So after most code samples, there will be an empty code block where you can write the code, and then can execute it by clicking the green triangle. In the sample below, create a variable called "y", set it equal to 45, and then print it.
+
+![your turn](orange.jpg)
 
 ```{r}
 #enter your code below:
@@ -53,6 +53,7 @@ text
 
 ```
 
+![your turn](orange.jpg)
 In the block below, set a variable called myText to an array of some sentences you create:
 
 ```{r}
@@ -72,7 +73,7 @@ text_df <- tibble(line = 1:4, text = text)
 text_df
 ```
 
-
+![your turn](orange.jpg)
 Below, write similar code to convert your variable myText to a tibble (call the new variable myText_df).
 ```{r}
 
@@ -89,7 +90,7 @@ text_df %>%
 
 Wait, what is that "%>%" symbol? It's the R "pipe" operator, and is used to pass data to functions, or chain functions together. It can be helpful to think of it as the word "then".
 
-
+![your turn](orange.jpg)
 Now run the unnest_tokens function on your myText_df variable, and print it:
 ```{r}
 
@@ -154,6 +155,7 @@ tidy_books
 
 ```
 
+![your turn](orange.jpg)
 Now it's your turn to replicate the code above. Create your new variable called myTidy_books:
 
 ```{r}
@@ -175,11 +177,50 @@ tidy_books <- tidy_books %>%
   anti_join(stop_words)
 ```
 
-!["your turn"](orange.jpg)
+![your turn](orange.jpg)
 Now try the same with myTidy_books:
 
 ```{r}
 data(stop_words)
+
+
+```
+
+Now that we've removed all the stop words, let's take a look at the frequency of word counts in our tidied tibble:
+
+```{r}
+tidy_books %>%
+  count(word, sort = TRUE) 
+
+```
+
+![your turn](orange.jpg)
+Try doing the same with myTidy_books:
+
+```{r}
+
+```
+
+
+Now let's create a visualization showing the most fruquently occurring words, using the ggplot library:
+
+```{r}
+library(ggplot2)
+
+tidy_books %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 600 ) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
+```
+
+
+Now try the same with myTidy_books:
+
+```{r}
 
 
 ```
