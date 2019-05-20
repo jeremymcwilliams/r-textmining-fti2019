@@ -87,6 +87,9 @@ text_df %>%
   unnest_tokens(word, text)
 ```
 
+Wait, what is that "%>%" symbol? It's the R "pipe" operator, and is used to pass data to functions, or chain functions together. It can be helpful to think of it as the word "then".
+
+
 Now run the unnest_tokens function on your myText_df variable, and print it:
 ```{r}
 
@@ -105,6 +108,82 @@ Now we have some tools to make our data "tidy". Let's do the same thing with a *
 
 
 ### Working with a larger data set
+
+
+Now let's look at Jane Austen's six published novels. Fortuantely there's an R package that has this! Run the code below:
+
+```{r}
+library(janeaustenr)
+library(dplyr)
+library(stringr)
+```
+
+
+
+
+
+```{r}
+original_books <- austen_books() %>%
+  group_by(book) %>%
+  mutate(linenumber = row_number(),
+         chapter = cumsum(str_detect(text, regex("^chapter [\\divxlc]",
+                                                 ignore_case = TRUE)))) %>%
+  ungroup()
+
+original_books
+```
+
+There is obviously a lot going on there, so let's try to break down what's going on:
+
+* austen_books() is a pre-made tibble with two columns: text (each line of text) and book
+* group_by(book) simply groups by the "book" field. This is key for the next step, where we want chapter info, and need to make sure the chapters are specific to each book.
+* the mutate() function adds new variables (or table columns) while preserving existing ones. So to keep things simple, we're adding a "linenumber" column, and a "chapter" column. The linenumber column starts at 1 for each book (thanks to group_by(books)), and chapter uses regular expressions to find the text "chapter" to get the correct chapter number.
+* ungroup() is called mainly because we're done making this updated tibble, so there's no longer a need to keep things grouped. All necessary groupings should be reflected in the tibble.
+
+
+So now we're in a similar spot from the first exercise, where we have a line of text in each row, but we really want a single word in each row. So we can use the unnest_tokens() function again:
+
+```{r}
+
+# this requires "tidytext", so run library(tidytext) if you haven't already
+
+tidy_books <- original_books %>%
+  unnest_tokens(word, text)
+
+tidy_books
+
+```
+
+Now it's your turn to replicate the code above. Create your new variable called myTidy_books:
+
+```{r}
+
+# this requires "tidytext", so run library(tidytext) if you haven't already
+
+
+```
+
+
+Now our tibble myText_books should be in the correct format of one word per row. 
+
+Next we want to get rid of words we don't care about, like "a", "an", "the", etc. We can do this by loading the "stop words" data set, and then removing them (or "anti-joining" them) from our tibble:
+
+```{r}
+data(stop_words)
+
+tidy_books <- tidy_books %>%
+  anti_join(stop_words)
+```
+
+!["your turn"](orange.jpg)
+Now try the same with myTidy_books:
+
+```{r}
+data(stop_words)
+
+
+```
+
 
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
