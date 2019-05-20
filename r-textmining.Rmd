@@ -9,6 +9,7 @@ output:
 
 Welcome to the "Text Mining with R" FTI session. During this session, we will work through this R Notebook to do some text mining of Jane Austen's works, and turn our results into some charts. Our activities are taken directly from Chapter 1 of "[Text Mining with R: A Tidy Approach](https://www.tidytextmining.com/)" by Silge and Robinson. We're just going to scratch the surface on R and text mining, so if you're interested in pursuing this topic further, take a look at Silge & Robinson's free online text.
 
+![Silge & Robinson](textminingwithr.png) 
 
 Within this R Notebook, we can automatically run code samples by clicking the green triangle button in samples like below (please note that messages beginning with "#" are comments):
 
@@ -19,7 +20,7 @@ x    #prints the value of x
 
 ```
 
-Clicking the green triangle is fun and easy, but doesn't really help you learn R. So after each code sample, there will be an empty code block where you can write the code, and then can execute it by clicking the green triangle. In the sample below, create a variable called "y", set it equal to 45, and then print it.
+Clicking the green triangle is fun and easy, but doesn't really help you learn R. So after most code samples, there will be an empty code block where you can write the code, and then can execute it by clicking the green triangle. In the sample below, create a variable called "y", set it equal to 45, and then print it.
 
 ```{r}
 #enter your code below:
@@ -52,8 +53,58 @@ text
 
 ```
 
+In the block below, set a variable called myText to an array of some sentences you create:
+
+```{r}
+# create and print the varibale myText and set it equal to an array of sentences
 
 
+```
+
+
+
+It's not uncommon to start out with an array of data. Our ultimate goal, though, is to "tidy" the data so it adheres to the tidy principles. We want to get our data into a format where each individual word is a value in a table (or "tibble") row. We're going to use the "dplyer" library (this is part of the "tidyverse") to start todying the data. 
+
+```{r}
+library(dplyr)
+text_df <- tibble(line = 1:4, text = text)
+
+text_df
+```
+
+
+Below, write similar code to convert your variable myText to a tibble (call the new variable myText_df).
+```{r}
+
+```
+
+So we're getting there. We now have our data in a table, with each sentence in a tibble row. But our goal is to make each word its own unique row. So lets use the unnest_tokens function, which is part of the tidytext library:
+
+```{r}
+library(tidytext)
+
+text_df %>%
+  unnest_tokens(word, text)
+```
+
+Now run the unnest_tokens function on your myText_df variable, and print it:
+```{r}
+
+
+
+```
+
+
+Some key features of unnest_tokens:
+*Other columns, such as the line number each word came from, are retained.
+*Punctuation has been stripped.
+*By default, unnest_tokens() converts the tokens to lowercase, which makes them easier to compare or combine with other datasets. (Use the to_lower = FALSE argument to turn off this behavior).
+
+Now we have some tools to make our data "tidy". Let's do the same thing with a **MUCH** larger data set, and then we'll start running some analysis.
+
+
+
+### Working with a larger data set
 
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
