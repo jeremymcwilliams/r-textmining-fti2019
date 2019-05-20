@@ -39,6 +39,22 @@ One of the big challenges of data science is to take "messy" data, and turn it i
 * Each observation is a row
 * Each type of observational unit is a table
 
+Let's get started by working with a small data set. Below we're going to use the "c" function, to create an array of lines written by Jane Austen, and setting it equal to the variable *text*.
+
+```{r}
+
+text <- c("Because I could not stop for Death -",
+          "He kindly stopped for me -",
+          "The Carriage held but just Ourselves -",
+          "and Immortality")
+
+text
+
+```
+
+
+
+
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
 
