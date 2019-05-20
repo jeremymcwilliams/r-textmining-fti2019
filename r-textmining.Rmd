@@ -1,6 +1,10 @@
 ---
 title: "Text Mining with R"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
 ---
 
 Welcome to the "Text Mining with R" FTI session. During this session, we will work through this R Notebook to do some text mining of Jane Austen's works, and turn our results into some charts. Our activities are taken directly from Chapter 1 of "[Text Mining with R: A Tidy Approach](https://www.tidytextmining.com/)" by Silge and Robinson. We're just going to scratch the surface on R and text mining, so if you're interested in pursuing this topic further, take a look at Silge & Robinson's free online text.
@@ -27,7 +31,13 @@ Clicking the green triangle is fun and easy, but doesn't really help you learn R
 
 Before really getting going, keep in mind that you can create a web page output of this notebook by clicking the "Preview" button above. It makes this a little easier to read, and also makes this format great for things like tutorials, lab manuals, etc.
 
+### Making our data "Tidy"
 
+One of the big challenges of data science is to take "messy" data, and turn it into "cleaner" data that one can work with. In R, there is a package called the "tidyverse", which establishes some baselines for useful data and R functions to help convert data into "tidy" data. Some key "tidy" data principles are:
+
+* Each variable is a column
+* Each observation is a row
+* Each type of observational unit is a table
 
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
